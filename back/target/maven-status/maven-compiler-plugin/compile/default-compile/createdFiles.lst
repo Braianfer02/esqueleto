@@ -1,0 +1,13 @@
+com\flashpage\app\repository\VentaRepository.class
+com\flashpage\app\model\Persona$Rol.class
+com\flashpage\app\repository\PersonaRepository.class
+com\flashpage\app\service\IPersonaService.class
+com\flashpage\app\service\IVentaService.class
+com\flashpage\app\model\Venta.class
+com\flashpage\app\service\PersonaService.class
+com\flashpage\app\service\VentaService.class
+com\flashpage\app\controller\PersonaController.class
+com\flashpage\app\dto\PersonaDTO.class
+com\flashpage\app\controller\VentaController.class
+com\flashpage\FlashPageApplication.class
+com\flashpage\app\model\Persona.class

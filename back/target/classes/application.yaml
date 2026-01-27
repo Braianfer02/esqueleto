@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: flashpage
+  datasource:
+    url: jdbc:mysql://localhost:8080/esqueleto
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  secret: 4bc5ef10820a8b0da7921c8ce0b1122039775dc84fe50e34d246c1fe1ce080a5 # Base64 256-bit
+  expiration: 2
