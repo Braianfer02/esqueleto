@@ -2,54 +2,58 @@ package com.flashpage.app.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.flashpage.app.model.Persona;
+import com.flashpage.app.dto.PersonaRequestDTO;
+import com.flashpage.app.dto.PersonaResponseDTO;
+import com.flashpage.app.model.Persona.Rol;
 import com.flashpage.app.service.IPersonaService;
 
 @RestController
-@RequestMapping("/api/persona")
+@RequestMapping("/personas")
 public class PersonaController {
 
-    // ---------- IMPLEMENTAMOS ---------- //
     private final IPersonaService personaService;
 
     public PersonaController(IPersonaService personaService) {
         this.personaService = personaService;
     }
-    
-    // ---------- METODOS CRUD ---------- //
-    // ------------- CREATE ------------- //
-    @PostMapping("/create")
-    public Persona crearPersona(@RequestBody Persona objetoPersona){
-        return personaService.crearPersona(objetoPersona);
-    };
-    // ------------ READ ONE ------------ //
-    @GetMapping("/read/{id}")
-    public Persona readOnePersona(@PathVariable Long id){
+
+    // -------- CREATE --------
+    @PostMapping
+    public PersonaResponseDTO crearPersona(@RequestBody PersonaRequestDTO dto) {
+        return personaService.crearPersona(dto);
+    }
+
+    // -------- READ ONE --------
+    @GetMapping("/{id}")
+    public PersonaResponseDTO obtenerPersona(@PathVariable Long id) {
         return personaService.readOnePersona(id);
     }
-    // ------------ READ ALL ------------ //
-    @GetMapping("/read")
-    public List<Persona> readAllPersona(){
+
+    // -------- READ ALL --------
+    @GetMapping
+    public List<PersonaResponseDTO> obtenerTodas() {
         return personaService.readAllPersona();
-    };
-    // ---------- UPDATE ----------
-    @PutMapping("/update/{id}")
-    public Persona updatePersona(
-        @PathVariable Long id,@RequestBody Persona objetoPersona) {
-        return personaService.updatePersona(id, objetoPersona);
-    };
-    // ------------- DELETE ------------- //
-    @DeleteMapping("/delete/{id}")
-    public Persona deletePersona(@PathVariable Long id){
+    }
+
+    // -------- READ BY ROL --------
+    @GetMapping("/rol/{rol}")
+    public List<PersonaResponseDTO> obtenerPorRol(@PathVariable Rol rol) {
+        return personaService.readAllRol(rol);
+    }
+
+    // -------- UPDATE --------
+    @PutMapping("/{id}")
+    public PersonaResponseDTO actualizarPersona(
+            @PathVariable Long id,
+            @RequestBody PersonaRequestDTO dto) {
+        return personaService.updatePersona(id, dto);
+    }
+
+    // -------- DELETE --------
+    @DeleteMapping("/{id}")
+    public PersonaResponseDTO eliminarPersona(@PathVariable Long id) {
         return personaService.deletePersona(id);
     }
 }

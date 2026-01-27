@@ -2,18 +2,22 @@ package com.flashpage.app.service;
 
 import java.util.List;
 
-import com.flashpage.app.model.Persona;
+import com.flashpage.app.dto.PersonaRequestDTO;
+import com.flashpage.app.dto.PersonaResponseDTO;
+import com.flashpage.app.model.Persona.Rol;
 
 public interface IPersonaService {
     // ---------- METODOS CRUD ---------- //
     // ------------- CREATE ------------- //
-    public Persona crearPersona(Persona objetoPersona);
+    PersonaResponseDTO crearPersona(PersonaRequestDTO dto);
     // ------------ READ ONE ------------ //
-    public Persona readOnePersona(Long id);
+    PersonaResponseDTO readOnePersona(Long id);
     // ------------ READ ALL ------------ //
-    public List<Persona> readAllPersona();
+    public List<PersonaResponseDTO> readAllPersona();
+    // ------------ READ ALL ROL ------------ //
+    public List<PersonaResponseDTO> readAllRol(Rol rol);
     // ------------- UPDATE ------------- //
-    public Persona updatePersona(Long id, Persona objetoPersona);
+    PersonaResponseDTO updatePersona(Long id, PersonaRequestDTO dto);
     // ------------- DELETE ------------- //
-    public Persona deletePersona(Long id);
+    PersonaResponseDTO deletePersona(Long id);
 }

@@ -86,11 +86,12 @@ public class Persona {
     }
 
     public enum Rol{
-        Dueño,
-        Gerente,
-        Jefe,
-        Supervisor,
-        Asesor,
+        ADMIN,
+        DUEÑO,
+        GERENTE,
+        JEFE,
+        SUPERVISOR,
+        ASESOR,
     }
 
     public Long getId() {

@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.flashpage.app.model.Persona;
+import com.flashpage.app.model.Persona.Rol;
 import com.flashpage.app.repository.PersonaRepository;
+import com.flashpage.app.dto.PersonaMapper;
+import com.flashpage.app.dto.PersonaRequestDTO;
+import com.flashpage.app.dto.PersonaResponseDTO;
 import com.flashpage.app.exception.ResourceNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -22,46 +26,64 @@ public class PersonaService implements IPersonaService{
     
     // ---------- METODOS CRUD ---------- //
     // ------------- CREATE ------------- //
-    public Persona crearPersona(Persona objetoPersona){
-        return personaRepository.save(objetoPersona);
+    @Override
+    public PersonaResponseDTO crearPersona(PersonaRequestDTO dto){
+        // DTO -> ENTITY
+        Persona objetPersona = PersonaMapper.toEntity(dto);
+        // GUARDAR EN BD
+        Persona guardarPersona = personaRepository.save(objetPersona);
+        // ENTITY -> RESPONSEDTO
+        return PersonaMapper.toResponse(guardarPersona);
     };
     // ------------ READ ONE ------------ //
-
-    public Persona readOnePersona(Long id){
-        return personaRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException(
-                "Persona con id " + id + " no encontrada"
-            ));
+    @Override
+    public PersonaResponseDTO readOnePersona(Long id){
+        // BUSCAMOS A LA PERSONA
+        Persona objetoPersona = personaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Persona con id " + id + " no encontrada"));
+        // RETORNAMOS PERSONA DTO
+        return PersonaMapper.toResponse(objetoPersona);
     }
     // ------------ READ ALL ------------ //
-    public List<Persona> readAllPersona(){
-        return personaRepository.findAll();
+    @Override
+    public List<PersonaResponseDTO> readAllPersona(){
+        // RETORNAMOS LISTA DE PERSONA DTO
+        return personaRepository.findAll().stream().map(PersonaMapper::toResponse).toList();
     };
-    // ---------- UPDATE ----------
+    @Override
+    // ------------ READ ALL ROL ------------ //
+    public List<PersonaResponseDTO> readAllRol(Rol rol) {
+        return personaRepository.findByRol(rol)
+                .stream()
+                .map(PersonaMapper::toResponse)
+                .toList();
+    }
+    // ------------ UPDATE -------------- //
     @Transactional
-    public Persona updatePersona(Long id, Persona objetoPersona) {
+    @Override
+    public PersonaResponseDTO updatePersona(Long id, PersonaRequestDTO dto) {
 
-        Persona personaExistente = readOnePersona(id);
+        Persona persona = personaRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Persona con id " + id + " no encontrada"));
 
-        personaExistente.setNombre(objetoPersona.getNombre());
-        personaExistente.setApellido(objetoPersona.getApellido());
-        personaExistente.setDni(objetoPersona.getDni());
-        personaExistente.setTelefono(objetoPersona.getTelefono());
-        personaExistente.setRol(objetoPersona.getRol());
-        personaExistente.setDireccion(objetoPersona.getDireccion());
-        personaExistente.setLocalidad(objetoPersona.getLocalidad());
-        personaExistente.setProvincia(objetoPersona.getProvincia());
-        personaExistente.setCodigoPostal(objetoPersona.getCodigoPostal());
-        personaExistente.setPais(objetoPersona.getPais());
-        personaExistente.setUsuario(objetoPersona.getUsuario());
-        personaExistente.setContraseña(objetoPersona.getContraseña());
+        persona.setNombre(dto.getNombre());
+        persona.setApellido(dto.getApellido());
+        persona.setDni(dto.getDni());
+        persona.setTelefono(dto.getTelefono());
+        persona.setRol(dto.getRol());
+        persona.setDireccion(dto.getDireccion());
+        persona.setLocalidad(dto.getLocalidad());
+        persona.setProvincia(dto.getProvincia());
+        persona.setCodigoPostal(dto.getCodigoPostal());
+        persona.setPais(dto.getPais());
 
-        return personaRepository.save(personaExistente);
-    };
+        return PersonaMapper.toResponse(personaRepository.save(persona));
+    }
     // ------------- DELETE ------------- //
-    public Persona deletePersona(Long id){
-        Persona objetoPersona = readOnePersona(id);
-        personaRepository.deleteById(id);
-        return objetoPersona;
+    @Override
+    public PersonaResponseDTO deletePersona(Long id){
+        Persona persona = personaRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Persona con id " + id + " no encontrada"));
+        personaRepository.delete(persona);
+        return PersonaMapper.toResponse(persona);
     }
 }

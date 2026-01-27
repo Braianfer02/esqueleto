@@ -2,6 +2,8 @@ package com.flashpage.app.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,27 +30,28 @@ public class VentaController {
     // ---------- METODOS CRUD ---------- //
     // ------------- CREATE ------------- //
     @PostMapping("/create")
-    public Venta crearVenta(@RequestBody Venta objetoVenta){
-        return ventaService.crearVenta(objetoVenta);
+    public ResponseEntity<Venta> crearVenta(@RequestBody Venta objetoVenta){
+        Venta ventaCreada = ventaService.crearVenta(objetoVenta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ventaCreada);
     };
     // ------------ READ ONE ------------ //
     @GetMapping("/read/{id}")
-    public Venta readOneVenta(@PathVariable Long id){
-        return ventaService.readOneVenta(id);
+    public ResponseEntity<Venta> readOneVenta(@PathVariable Long id){
+        return ResponseEntity.ok(ventaService.readOneVenta(id));
     }
     @GetMapping("/read")
     // ------------ READ ALL ------------ //
-    public List<Venta> readAllVenta(){
-        return ventaService.readAllVenta();
+    public ResponseEntity<List<Venta>> readAllVenta(){
+        return ResponseEntity.ok(ventaService.readAllVenta());
     };
     // ---------- UPDATE ----------
     @PutMapping("/update/{id}")
-    public Venta updateVenta(@PathVariable Long id,@RequestBody Venta objetoVenta) {
-        return ventaService.updateVenta(id, objetoVenta);
+    public ResponseEntity<Venta> updateVenta(@PathVariable Long id,@RequestBody Venta objetoVenta) {
+        return ResponseEntity.ok(ventaService.updateVenta(id, objetoVenta));
     };
     // ------------- DELETE ------------- //
     @DeleteMapping("/delete/{id}")
-    public Venta deleteVenta(@PathVariable Long id){
-        return ventaService.deleteVenta(id);
+    public ResponseEntity<Venta> deleteVenta(@PathVariable Long id){
+        return ResponseEntity.ok(ventaService.deleteVenta(id));
     }
 }
