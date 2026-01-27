@@ -1,6 +1,7 @@
 package com.flashpage.app.model;
 
 import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -60,7 +61,7 @@ public class Persona {
     private String usuario;
     
     @Column(nullable = false)
-    private String contraseña;
+    private String password;
 
     // Creamos: Constructor vacio, Constructor con parametros, Getter y Setter
     public Persona() {
@@ -68,7 +69,7 @@ public class Persona {
     
     public Persona(Long id, String nombre, String apellido, String dni, String telefono, Rol rol, List<Venta> ventas,
             String direccion, String localidad, String provincia, String codigoPostal, String pais, String usuario,
-            String contraseña) {
+            String password) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -82,16 +83,16 @@ public class Persona {
         this.codigoPostal = codigoPostal;
         this.pais = pais;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.password = password;
     }
 
     public enum Rol{
-        ADMIN,
-        DUEÑO,
-        GERENTE,
-        JEFE,
-        SUPERVISOR,
-        ASESOR,
+        Dueño,
+        Gerente,
+        Jefe,
+        Supervisor,
+        Asesor,
+        Cliente,
     }
 
     public Long getId() {
@@ -199,10 +200,10 @@ public class Persona {
     }
 
     public String getContraseña() {
-        return contraseña;
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContraseña(String password) {
+        this.password = password;
     }
 }

@@ -1,20 +1,70 @@
 package com.flashpage.app.dto;
 
-public class VentaRequestDTO {
-    
-    private String producto;
-    private Double monto;
+import java.math.BigDecimal;
 
+import com.flashpage.app.model.Venta.EstadoVenta;
+import com.flashpage.app.model.Venta.MedioPago;
+
+    
+public class VentaRequestDTO {
+
+    private String producto;
+    private String descripcion;
+    private BigDecimal precio;
+    private EstadoVenta estado;
+    private MedioPago medioPago;
+    private String observaciones;
+
+    private Long asesorId;
+    private Long clienteId;
+    
     public String getProducto() {
         return producto;
     }
     public void setProducto(String producto) {
         this.producto = producto;
     }
-    public Double getMonto() {
-        return monto;
+    public String getDescripcion() {
+        return descripcion;
     }
-    public void setMonto(Double monto) {
-        this.monto = monto;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
+    public BigDecimal getPrecio() {
+        return precio;
+    }
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+    public EstadoVenta getEstado() {
+        return estado;
+    }
+    public void setEstado(EstadoVenta estado) {
+        this.estado = estado;
+    }
+    public MedioPago getMedioPago() {
+        return medioPago;
+    }
+    public void setMedioPago(MedioPago medioPago) {
+        this.medioPago = medioPago;
+    }
+    public String getObservaciones() {
+        return observaciones;
+    }
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+    public Long getAsesorId() {
+        return asesorId;
+    }
+    public void setAsesorId(Long asesorId) {
+        this.asesorId = asesorId;
+    }
+    public Long getClienteId() {
+        return clienteId;
+    }
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
+    }
+    
 }
