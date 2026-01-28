@@ -1,16 +1,25 @@
+server:
+  port: 8080
+
 spring:
   application:
-    name: flashpage
-  datasource:
-    url: jdbc:mysql://localhost:3306/esqueleto
-    username: root
-    password:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+    name: flashpage-backend
+  profiles:
+    active: dev
 
-jwt:
-  secret: 4bc5ef10820a8b0da7921c8ce0b1122039775dc84fe50e34d246c1fe1ce080a5 # Base64 256-bit
-  expiration: 2
+
+  jackson:
+    time-zone: America/Argentina/Buenos_Aires
+    serialization:
+      write-dates-as-timestamps: false
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
