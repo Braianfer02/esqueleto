@@ -194,4 +194,12 @@ public class Venta {
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
     }
+
+    public String getDigitoTarjeta() {
+        return digitoTarjeta;
+    }
+
+    public void setDigitoTarjeta(String digitoTarjeta) {
+        this.digitoTarjeta = digitoTarjeta;
+    }
 }

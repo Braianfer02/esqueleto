@@ -15,6 +15,8 @@ public class VentaRequestDTO {
 
     private String descripcion;
 
+    private String digitoTarjeta;
+
     @NotNull
     @PositiveOrZero
     private BigDecimal precio;
@@ -34,11 +36,12 @@ public class VentaRequestDTO {
     public VentaRequestDTO() {
     }
 
-    public VentaRequestDTO(@NotBlank String producto, String descripcion, @NotNull @PositiveOrZero BigDecimal precio,
+    public VentaRequestDTO(@NotBlank String producto, String descripcion, String digitoTarjeta, @NotNull @PositiveOrZero BigDecimal precio,
             @NotNull EstadoVenta estado, MedioPago medioPago, String observaciones, @NotNull Long asesorId,
             Long clienteId) {
         this.producto = producto;
         this.descripcion = descripcion;
+        this.digitoTarjeta = digitoTarjeta;
         this.precio = precio;
         this.estado = estado;
         this.medioPago = medioPago;
@@ -109,5 +112,13 @@ public class VentaRequestDTO {
 
     public void setClienteId(Long clienteId) {
         this.clienteId = clienteId;
+    }
+
+    public String getDigitoTarjeta() {
+        return digitoTarjeta;
+    }
+
+    public void setDigitoTarjeta(String digitoTarjeta) {
+        this.digitoTarjeta = digitoTarjeta;
     }
 }

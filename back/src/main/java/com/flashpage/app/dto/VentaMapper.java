@@ -10,6 +10,7 @@ public class VentaMapper {
         Venta venta = new Venta();
         venta.setProducto(dto.getProducto());
         venta.setDescripcion(dto.getDescripcion());
+        venta.setDigitoTarjeta(dto.getDigitoTarjeta());
         venta.setPrecio(dto.getPrecio());
         venta.setEstado(dto.getEstado());
         venta.setMedioPago(dto.getMedioPago());
@@ -25,10 +26,10 @@ public class VentaMapper {
             venta.getId(),
             venta.getProducto(),
             venta.getPrecio(),
-            venta.getAsesor().getId(),
-            venta.getAsesor().getNombre(),
+            venta.getAsesor() != null ? venta.getAsesor().getId() : null,
+            venta.getAsesor() != null ? venta.getAsesor().getNombre() + " " + venta.getAsesor().getApellido() : null,
             venta.getCliente() != null ? venta.getCliente().getId() : null,
-            venta.getCliente() != null ? venta.getCliente().getNombre() : null
+            venta.getCliente() != null ? venta.getCliente().getNombre() + " " + venta.getCliente().getApellido() : null
         );
     }
 }

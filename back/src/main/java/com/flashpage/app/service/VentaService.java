@@ -90,13 +90,11 @@ public class VentaService implements IVentaService {
 
         venta.setProducto(dto.getProducto());
         venta.setDescripcion(dto.getDescripcion());
+        venta.setDigitoTarjeta(dto.getDigitoTarjeta());
         venta.setPrecio(dto.getPrecio());
         venta.setEstado(dto.getEstado());
         venta.setMedioPago(dto.getMedioPago());
         venta.setObservaciones(dto.getObservaciones());
-
-        // ❌ NO seteamos updatedAt
-        // @PreUpdate se ejecuta solo
 
         return VentaMapper.toResponse(ventaRepository.save(venta));
     }
