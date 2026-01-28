@@ -1,10 +1,12 @@
 package com.flashpage.app.dto;
 
+import com.flashpage.app.model.Persona;
 import com.flashpage.app.model.Venta;
 
 public class VentaMapper {
 
-    public static Venta toEntity(VentaRequestDTO dto) {
+    public static Venta toEntity(VentaRequestDTO dto, Persona asesor, Persona cliente) {
+
         Venta venta = new Venta();
         venta.setProducto(dto.getProducto());
         venta.setDescripcion(dto.getDescripcion());
@@ -12,6 +14,9 @@ public class VentaMapper {
         venta.setEstado(dto.getEstado());
         venta.setMedioPago(dto.getMedioPago());
         venta.setObservaciones(dto.getObservaciones());
+        venta.setAsesor(asesor);
+        venta.setCliente(cliente);
+
         return venta;
     }
 

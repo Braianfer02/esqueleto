@@ -1,6 +1,5 @@
 package com.flashpage.app.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import com.flashpage.app.dto.VentaRequestDTO;
 import com.flashpage.app.dto.VentaResponseDTO;
 import com.flashpage.app.exception.ResourceNotFoundException;
 import com.flashpage.app.model.Persona;
-import com.flashpage.app.model.Persona.Rol;
 import com.flashpage.app.model.Venta;
 import com.flashpage.app.repository.PersonaRepository;
 import com.flashpage.app.repository.VentaRepository;
@@ -100,7 +98,7 @@ public class VentaService implements IVentaService {
         // ❌ NO seteamos updatedAt
         // @PreUpdate se ejecuta solo
 
-        return VentaMapper.toResponse(venta);
+        return VentaMapper.toResponse(ventaRepository.save(venta));
     }
 
     // -------- DELETE --------

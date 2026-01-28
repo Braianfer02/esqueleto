@@ -24,8 +24,7 @@ public class VentaController {
 
     // -------- CREATE --------
     @PostMapping
-    public ResponseEntity<VentaResponseDTO> crearVenta(
-            @Valid @RequestBody VentaRequestDTO dto) {
+    public ResponseEntity<VentaResponseDTO> crearVenta(@Valid @RequestBody VentaRequestDTO dto){
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ventaService.crearVenta(dto));
