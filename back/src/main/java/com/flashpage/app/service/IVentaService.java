@@ -2,18 +2,23 @@ package com.flashpage.app.service;
 
 import java.util.List;
 
-import com.flashpage.app.model.Venta;
+import com.flashpage.app.dto.VentaRequestDTO;
+import com.flashpage.app.dto.VentaResponseDTO;
 
 public interface IVentaService {
     // ---------- METODOS CRUD ---------- //
     // ------------- CREATE ------------- //
-    public Venta crearVenta(Venta objetoVenta);
+    VentaResponseDTO crearVenta(VentaRequestDTO dto);
     // ------------ READ ONE ------------ //
-    public Venta readOneVenta(Long id);
+    VentaResponseDTO readOneVenta(Long id);
     // ------------ READ ALL ------------ //
-    public List<Venta> readAllVenta();
+    List<VentaResponseDTO> readAllVenta();
+    // ------------ READ ASESOR ------------ //
+    List<VentaResponseDTO> readAsesor(Long asesorId);
+    // ------------ READ CLIENTE ------------ //
+    List<VentaResponseDTO> readCliente(Long clienteId);
     // ------------- UPDATE ------------- //
-    public Venta updateVenta(Long id, Venta objetoVenta);
+    VentaResponseDTO updateVenta(Long id, VentaRequestDTO dto);
     // ------------- DELETE ------------- //
-    public Venta deleteVenta(Long id);
+    VentaResponseDTO deleteVenta(Long id);
 }

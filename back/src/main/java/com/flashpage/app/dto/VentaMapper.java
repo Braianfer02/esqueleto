@@ -4,25 +4,26 @@ import com.flashpage.app.model.Venta;
 
 public class VentaMapper {
 
+    public static Venta toEntity(VentaRequestDTO dto) {
+        Venta venta = new Venta();
+        venta.setProducto(dto.getProducto());
+        venta.setDescripcion(dto.getDescripcion());
+        venta.setPrecio(dto.getPrecio());
+        venta.setEstado(dto.getEstado());
+        venta.setMedioPago(dto.getMedioPago());
+        venta.setObservaciones(dto.getObservaciones());
+        return venta;
+    }
+
     public static VentaResponseDTO toResponse(Venta venta) {
-        VentaResponseDTO dto = new VentaResponseDTO();
-        dto.setId(venta.getId());
-        dto.setProducto(venta.getProducto());
-        dto.setPrecio(venta.getPrecio());
-        dto.setEstado(venta.getEstado());
-        dto.setFechaVenta(venta.getFechaVenta());
-
-        dto.setAsesorId(venta.getAsesor().getId());
-        dto.setAsesorNombre(
-            venta.getAsesor().getNombre() + " " + venta.getAsesor().getApellido()
+        return new VentaResponseDTO(
+            venta.getId(),
+            venta.getProducto(),
+            venta.getPrecio(),
+            venta.getAsesor().getId(),
+            venta.getAsesor().getNombre(),
+            venta.getCliente() != null ? venta.getCliente().getId() : null,
+            venta.getCliente() != null ? venta.getCliente().getNombre() : null
         );
-
-        if (venta.getCliente() != null) {
-            dto.setClienteId(venta.getCliente().getId());
-            dto.setClienteNombre(
-                venta.getCliente().getNombre() + " " + venta.getCliente().getApellido()
-            );
-        }
-        return dto;
     }
 }

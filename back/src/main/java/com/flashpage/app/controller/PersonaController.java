@@ -9,6 +9,8 @@ import com.flashpage.app.dto.PersonaResponseDTO;
 import com.flashpage.app.model.Persona.Rol;
 import com.flashpage.app.service.IPersonaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/personas")
 public class PersonaController {
@@ -20,39 +22,39 @@ public class PersonaController {
     }
 
     // -------- CREATE --------
-    @PostMapping
-    public PersonaResponseDTO crearPersona(@RequestBody PersonaRequestDTO dto) {
+    @PostMapping("/create")
+    public PersonaResponseDTO crearPersona(@Valid @RequestBody PersonaRequestDTO dto) {
         return personaService.crearPersona(dto);
     }
 
     // -------- READ ONE --------
-    @GetMapping("/{id}")
+    @GetMapping("/read/one/{id}")
     public PersonaResponseDTO obtenerPersona(@PathVariable Long id) {
         return personaService.readOnePersona(id);
     }
 
     // -------- READ ALL --------
-    @GetMapping
+    @GetMapping("/read")
     public List<PersonaResponseDTO> obtenerTodas() {
         return personaService.readAllPersona();
     }
 
     // -------- READ BY ROL --------
-    @GetMapping("/rol/{rol}")
+    @GetMapping("/read/rol/{rol}")
     public List<PersonaResponseDTO> obtenerPorRol(@PathVariable Rol rol) {
         return personaService.readAllRol(rol);
     }
 
     // -------- UPDATE --------
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public PersonaResponseDTO actualizarPersona(
             @PathVariable Long id,
-            @RequestBody PersonaRequestDTO dto) {
+            @Valid @RequestBody PersonaRequestDTO dto) {
         return personaService.updatePersona(id, dto);
     }
 
     // -------- DELETE --------
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public PersonaResponseDTO eliminarPersona(@PathVariable Long id) {
         return personaService.deletePersona(id);
     }

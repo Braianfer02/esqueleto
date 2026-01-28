@@ -3,6 +3,7 @@ package com.flashpage.app.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -17,7 +18,6 @@ public class Venta {
 
     private String descripcion;
 
-    @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal precio;
 
     @Column(nullable = false)
@@ -34,6 +34,9 @@ public class Venta {
 
     @Enumerated(EnumType.STRING)
     private MedioPago medioPago;
+
+    @Column(length = 16)
+    private String digitoTarjeta;
 
     @Column(length = 1000)
     private String observaciones;
