@@ -1,0 +1,410 @@
+{
+  "info": {
+    "_postman_id": "f368946d-020b-4ff8-8f96-d27754bb0223",
+    "name": "Esqueleto",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Persona (Cliente)",
+      "id": "99eff769-a17b-4c85-b4ed-0ee56b580ac3",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Perez\",\r\n  \"dni\": \"30123456\",\r\n  \"telefono\": \"1123456789\",\r\n  \"rol\": \"Cliente\",\r\n  \"direccion\": \"Av. Siempre Viva 742\",\r\n  \"localidad\": \"CABA\",\r\n  \"provincia\": \"Buenos Aires\",\r\n  \"codigoPostal\": \"1000\",\r\n  \"pais\": \"Argentina\",\r\n  \"usuario\": \"juan.perez\",\r\n  \"password\": \"123456\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/personas/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "personas",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Persona (Asesor)",
+      "id": "6e96a408-d98a-4d41-bc1e-58da0b6777a2",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"Braian\",\r\n  \"apellido\": \"Fernandez\",\r\n  \"dni\": \"123456789\",\r\n  \"telefono\": \"1123456780\",\r\n  \"rol\": \"Asesor\",\r\n  \"direccion\": \"Av. Siempre Viva 742\",\r\n  \"localidad\": \"CABA\",\r\n  \"provincia\": \"Buenos Aires\",\r\n  \"codigoPostal\": \"1000\",\r\n  \"pais\": \"Argentina\",\r\n  \"usuario\": \"Braian.Fernandez\",\r\n  \"password\": \"123456\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/personas/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "personas",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read Persona",
+      "id": "bf88c1e0-b654-4cfd-a6d5-56a7a0384040",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/personas/read/one/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "personas",
+            "read",
+            "one",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read Rol (Asesor)",
+      "id": "f8eba3ef-eccb-4bb7-ab4e-0b291a7b35d9",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/personas/read/rol/Asesor",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "personas",
+            "read",
+            "rol",
+            "Asesor"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read All Personas",
+      "id": "c06428c1-e1d1-4ab0-a430-c4dbe3045290",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/personas/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "personas",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Persona",
+      "id": "af41814d-93f8-418d-9b8c-f2f8eee616d6",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/personas/delete/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "personas",
+            "delete",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Persona",
+      "id": "5b48a4e1-be17-4937-be5c-a8aa3bf5f239",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/personas/update/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "personas",
+            "update",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Venta",
+      "id": "293e562d-c34f-4cd3-9419-41e178b24625",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"producto\": \"Fibra Optica 300MB\",\r\n    \"descripcion\": \"Servicio Internet\",\r\n    \"precio\": 20000,\r\n    \"estado\": \"Pendiente\",\r\n    \"observaciones\": \"Servicio 2P, pasar pedido a admin\",\r\n    \"asesorId\": 2,\r\n    \"clienteId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/ventas/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "ventas",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read Venta",
+      "id": "d658b531-3db2-423f-bd2d-2518eac22501",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/ventas/read/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "ventas",
+            "read",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read Asesor Id",
+      "id": "4637809a-2e8a-4c89-a73c-e0f788421161",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/ventas/read/asesor/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "ventas",
+            "read",
+            "asesor",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read Cliente Id",
+      "id": "c3ef9dde-6a0c-46c2-8816-1f0ba35ff59c",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/ventas/read/cliente/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "ventas",
+            "read",
+            "cliente",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read All ventas",
+      "id": "07eb0fff-504e-4907-a697-040911fc3edd",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/ventas/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "ventas",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Venta",
+      "id": "c4199f3f-31ba-4a17-82fe-d06cc00e3cab",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/ventas/delete/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "ventas",
+            "delete",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Venta",
+      "id": "25f59378-7e1b-4eee-b660-a51742d68f99",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/esqueleto/api/ventas/update/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "esqueleto",
+            "api",
+            "ventas",
+            "update",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

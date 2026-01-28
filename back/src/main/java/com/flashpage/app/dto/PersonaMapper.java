@@ -17,7 +17,7 @@ public class PersonaMapper {
         persona.setCodigoPostal(dto.getCodigoPostal());
         persona.setPais(dto.getPais());
         persona.setUsuario(dto.getUsuario());
-        persona.setContraseña(dto.getContraseña());
+        persona.setPassword(dto.getPassword());
         return persona;
     }
 

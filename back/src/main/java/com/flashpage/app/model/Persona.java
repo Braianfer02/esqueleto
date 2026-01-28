@@ -199,11 +199,11 @@ public class Persona {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
+    public String getPassword() {
         return password;
     }
 
-    public void setContraseña(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

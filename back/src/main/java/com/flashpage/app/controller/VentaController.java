@@ -23,7 +23,7 @@ public class VentaController {
     }
 
     // -------- CREATE --------
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<VentaResponseDTO> crearVenta(@Valid @RequestBody VentaRequestDTO dto){
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -31,19 +31,19 @@ public class VentaController {
     }
 
     // -------- READ ONE --------
-    @GetMapping("/{id}")
+    @GetMapping("/read/{id}")
     public VentaResponseDTO obtenerVenta(@PathVariable Long id) {
         return ventaService.readOneVenta(id);
     }
 
     // -------- READ ALL --------
-    @GetMapping
+    @GetMapping("/read")
     public List<VentaResponseDTO> obtenerTodas() {
         return ventaService.readAllVenta();
     }
 
     // -------- READ BY ASESOR --------
-    @GetMapping("/asesor/{id}")
+    @GetMapping("/read/asesor/{id}")
     public List<VentaResponseDTO> obtenerPorAsesor(@PathVariable Long id) {
         return ventaService.readAsesor(id);
     }
@@ -55,7 +55,7 @@ public class VentaController {
     }
 
     // -------- UPDATE --------
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public VentaResponseDTO actualizarVenta(
             @PathVariable Long id,
             @Valid @RequestBody VentaRequestDTO dto) {
@@ -64,7 +64,7 @@ public class VentaController {
     }
 
     // -------- DELETE --------
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public VentaResponseDTO eliminarVenta(@PathVariable Long id) {
         return ventaService.deleteVenta(id);
     }

@@ -12,7 +12,7 @@ import com.flashpage.app.service.IPersonaService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/personas")
+@RequestMapping("/api/personas")
 public class PersonaController {
 
     private final IPersonaService personaService;
@@ -27,11 +27,6 @@ public class PersonaController {
         return personaService.crearPersona(dto);
     }
 
-    // -------- READ ONE --------
-    @GetMapping("/read/one/{id}")
-    public PersonaResponseDTO obtenerPersona(@PathVariable Long id) {
-        return personaService.readOnePersona(id);
-    }
 
     // -------- READ ALL --------
     @GetMapping("/read")
@@ -43,6 +38,12 @@ public class PersonaController {
     @GetMapping("/read/rol/{rol}")
     public List<PersonaResponseDTO> obtenerPorRol(@PathVariable Rol rol) {
         return personaService.readAllRol(rol);
+    }
+
+    // -------- READ ONE --------
+    @GetMapping("/read/one/{id}")
+    public PersonaResponseDTO obtenerPersona(@PathVariable Long id) {
+        return personaService.readOnePersona(id);
     }
 
     // -------- UPDATE --------

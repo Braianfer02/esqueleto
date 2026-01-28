@@ -3,23 +3,11 @@ server:
 
 spring:
   application:
-    name: flashpage-backend
+    name: flashpage
+
   profiles:
     active: dev
 
-
   jackson:
     time-zone: America/Argentina/Buenos_Aires
-    serialization:
-      write-dates-as-timestamps: false
-
-  jpa:
-    open-in-view: false
-    properties:
-      hibernate:
-        format_sql: true
-
-logging:
-  level:
-    root: INFO
-    org.hibernate.SQL: DEBUG
+    date-format: dd-MM-yyyy HH:mm:ss

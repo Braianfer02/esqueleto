@@ -15,7 +15,7 @@ public class PersonaRequestDTO {
     private String codigoPostal;
     private String pais;
     private String usuario;
-    private String contraseña;
+    private String password;
 
     public String getNombre() {
         return nombre;
@@ -83,10 +83,10 @@ public class PersonaRequestDTO {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
