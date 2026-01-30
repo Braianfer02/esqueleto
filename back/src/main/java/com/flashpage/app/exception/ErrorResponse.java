@@ -2,6 +2,15 @@ package com.flashpage.app.exception;
 
 import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ErrorResponse {
 
     private int status;
@@ -13,21 +22,6 @@ public class ErrorResponse {
         this.status = status;
         this.error = error;
         this.message = message;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+        this.timestamp = LocalDateTime.now();
     }
 }
