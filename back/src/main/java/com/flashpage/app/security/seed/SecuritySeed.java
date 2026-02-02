@@ -10,10 +10,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.flashpage.app.domain.model.Permiso;
-import com.flashpage.app.domain.model.Persona;
+import com.flashpage.app.domain.model.Usuario;
 import com.flashpage.app.domain.model.Rol;
 import com.flashpage.app.domain.repository.PermisoRepository;
-import com.flashpage.app.domain.repository.PersonaRepository;
+import com.flashpage.app.domain.repository.UsuarioRepository;
 import com.flashpage.app.domain.repository.RolRepository;
 
 @Component
@@ -22,18 +22,18 @@ public class SecuritySeed implements CommandLineRunner {
 
     private final PermisoRepository permisoRepository;
     private final RolRepository rolRepository;
-    private final PersonaRepository personaRepository;
+    private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
 
     public SecuritySeed(
             PermisoRepository permisoRepository,
             RolRepository rolRepository,
-            PersonaRepository personaRepository,
+            UsuarioRepository usuarioRepository,
             PasswordEncoder passwordEncoder
     ) {
         this.permisoRepository = permisoRepository;
         this.rolRepository = rolRepository;
-        this.personaRepository = personaRepository;
+        this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -79,8 +79,8 @@ public class SecuritySeed implements CommandLineRunner {
         });
 
         // 4) Usuario admin
-        personaRepository.findByEmail("admin@local").orElseGet(() -> {
-            Persona admin = new Persona();
+        usuarioRepository.findByEmail("admin@local").orElseGet(() -> {
+            Usuario admin = new Usuario();
             admin.setEmail("admin@local");
             admin.setPassword(passwordEncoder.encode("admin"));
             admin.setActivo(true);
@@ -89,7 +89,7 @@ public class SecuritySeed implements CommandLineRunner {
             roles.add(adminRol);
             admin.setRoles(roles);
 
-            return personaRepository.save(admin);
+            return usuarioRepository.save(admin);
         });
     }
 }
