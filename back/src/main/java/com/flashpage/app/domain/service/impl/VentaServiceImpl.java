@@ -51,6 +51,7 @@ public class VentaServiceImpl implements VentaService {
                     .orElseThrow(() -> new BusinessException("Cliente no encontrado"));
             venta.setCliente(cliente);
         }
+        
         venta.getItems().forEach(item -> {
 
             if (item.getCantidad() == null || item.getCantidad() <= 0)
