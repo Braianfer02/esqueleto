@@ -1,5 +1,7 @@
 package com.flashpage.app.domain.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -20,11 +22,11 @@ public class VentaItem {
     @Column(nullable = false)
     private Integer cantidad;
 
-    @Column(nullable = false)
-    private Double precioUnitario;
+    @Column(nullable = false, precision = 15, scale = 2)
+    private BigDecimal precioUnitario;
 
-    public Double getSubtotal() {
-        return cantidad * precioUnitario;
+    public BigDecimal getSubtotal() {
+        return precioUnitario.multiply(BigDecimal.valueOf(cantidad));
     }
 
     public Long getId() {
@@ -59,11 +61,11 @@ public class VentaItem {
         this.cantidad = cantidad;
     }
 
-    public Double getPrecioUnitario() {
+    public BigDecimal getPrecioUnitario() {
         return precioUnitario;
     }
 
-    public void setPrecioUnitario(Double precioUnitario) {
+    public void setPrecioUnitario(BigDecimal precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
 }

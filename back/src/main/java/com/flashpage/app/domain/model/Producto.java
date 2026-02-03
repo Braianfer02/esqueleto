@@ -1,5 +1,6 @@
 package com.flashpage.app.domain.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
@@ -18,7 +19,7 @@ public class Producto {
     private String descripcion;
 
     @Column(nullable = false)
-    private Double precio;
+    private BigDecimal precio;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -27,7 +28,9 @@ public class Producto {
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
+        LocalDateTime timeNow = LocalDateTime.now();
+        this.createdAt = timeNow;
+        this.updatedAt = timeNow;
     }
 
     @PreUpdate
@@ -59,11 +62,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 

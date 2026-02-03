@@ -1,24 +1,19 @@
 package com.flashpage.app.domain.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.flashpage.app.domain.model.Persona;
+import com.flashpage.app.domain.model.VentaItem;
 
-public interface PersonaService {
+public interface VentaItemService {
     // -------------------- METODOS CRUD -------------------- //
     // ----------------------- CREATE ----------------------- //
-    Persona create(Persona persona);
+    VentaItem create(VentaItem ventaItem);
     // ------------------------ READ ------------------------ //
-    Persona readById(Long id);
+    VentaItem readById(Long id);
     // ------------------------ READ ------------------------ //
-    Optional<Persona> findByDni(String dni);
-    // ------------------------ READ ------------------------ //
-    Optional<Persona> findByUsername(String username);
-    // ------------------------ READ ------------------------ //
-    List<Persona> readAll();
+    List<VentaItem> readAll();
     // ----------------------- UPDATE ----------------------- //
-    Persona update(Long id, Persona persona);
+    VentaItem update(Long id, VentaItem ventaItem);
     // ----------------------- DELETE ----------------------- //
     void deleteById(Long id);
 }

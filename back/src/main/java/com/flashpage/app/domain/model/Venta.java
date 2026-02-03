@@ -1,6 +1,6 @@
 package com.flashpage.app.domain.model;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,9 +12,6 @@ public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private LocalDate fechaVenta;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -34,6 +31,9 @@ public class Venta {
     @Column(length = 1000)
     private String observaciones;
 
+    @Column(nullable = false, precision = 15, scale = 2)
+    private BigDecimal total;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "asesor_id", nullable = false)
     private Persona asesor;
@@ -46,6 +46,7 @@ public class Venta {
     private List<VentaItem> items;
 
     public enum EstadoVenta {
+        SIN_ESTADO,
         CANCELADA,
         RECHAZADA,
         PENDIENTE,
@@ -59,20 +60,24 @@ public class Venta {
         TRANSFERENCIA
     }
 
+    @PrePersist
+    protected void onCreate() {
+        LocalDateTime timeNow = LocalDateTime.now();
+        this.createdAt = timeNow;
+        this.updatedAt = timeNow;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDate getFechaVenta() {
-        return fechaVenta;
-    }
-
-    public void setFechaVenta(LocalDate fechaVenta) {
-        this.fechaVenta = fechaVenta;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -121,6 +126,14 @@ public class Venta {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public Persona getAsesor() {

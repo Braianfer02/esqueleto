@@ -9,5 +9,4 @@ public class FlashPageApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FlashPageApplication.class, args);
 	}
-
 }
