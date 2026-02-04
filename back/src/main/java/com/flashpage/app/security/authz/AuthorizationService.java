@@ -2,24 +2,52 @@ package com.flashpage.app.security.authz;
 
 import org.springframework.stereotype.Service;
 
+import com.flashpage.app.domain.model.Persona;
 import com.flashpage.app.domain.model.Persona.Rol;
+import com.flashpage.app.domain.model.Venta;
 
-@Service("authz")
+@Service
 public class AuthorizationService {
 
-  // CRUD sobre personas (empleados/clientes): solo si soy superior
-  public boolean puedeCrudPersona(Rol actor, Rol target) {
-    if (actor == null || target == null) return false;
-    return actor.level() > target.level();
-  }
+    // CREATE: EMPLEADO solo para sí; SUPERVISOR+ puede crear para cualquiera
+    public boolean puedeCrearVenta(Persona actor, Persona asesorTarget) {
+        if (actor == null || asesorTarget == null) return false;
 
-  // CRUD productos: JEFE o superior
-  public boolean puedeCrudProducto(Rol actor) {
-    return actor != null && actor.level() >= Rol.JEFE.level();
-  }
+        if (actor.getRol() == Rol.EMPLEADO) {
+            return actor.getId().equals(asesorTarget.getId());
+        }
+        return actor.getRol().level() >= Rol.SUPERVISOR.level();
+    }
 
-  // CRUD ventas: EMPLEADO o superior (si querés que arriba también pueda)
-  public boolean puedeCrudVenta(Rol actor) {
-    return actor != null && actor.level() >= Rol.EMPLEADO.level();
-  }
+    // UPDATE: dueño puede (si querés), o cadena jerárquica, o dueño(DUENO)
+    public boolean puedeActualizarVenta(Persona actor, Venta venta) {
+        if (actor == null || venta == null || venta.getAsesor() == null) return false;
+
+        Persona asesor = venta.getAsesor();
+        if (actor.getId().equals(asesor.getId())) return true;
+        if (actor.getRol() == Rol.DUENO) return true;
+
+        return esJefeDirectoOIndirecto(actor, asesor);
+    }
+
+    // CANCEL (soft delete): asesor NO; DUENO sí; cadena jerárquica sí
+    public boolean puedeCancelarVenta(Persona actor, Venta venta) {
+        if (actor == null || venta == null || venta.getAsesor() == null) return false;
+
+        Persona asesor = venta.getAsesor();
+
+        if (actor.getId().equals(asesor.getId())) return false;
+        if (actor.getRol() == Rol.DUENO) return true;
+
+        return esJefeDirectoOIndirecto(actor, asesor);
+    }
+
+    public boolean esJefeDirectoOIndirecto(Persona posibleJefe, Persona empleado) {
+        Persona actual = empleado.getJefe();
+        while (actual != null) {
+            if (actual.getId().equals(posibleJefe.getId())) return true;
+            actual = actual.getJefe();
+        }
+        return false;
+    }
 }

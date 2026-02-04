@@ -47,10 +47,10 @@ public class Venta {
 
     public enum EstadoVenta {
         SIN_ESTADO,
-        CANCELADA,
-        RECHAZADA,
+        CANCELADO,
+        RECHAZADO,
         PENDIENTE,
-        COMPLETADA,
+        COMPLETADO,
     }
 
     public enum MedioPago {

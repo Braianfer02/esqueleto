@@ -11,3 +11,8 @@ spring:
   jackson:
     time-zone: America/Argentina/Buenos_Aires
     date-format: dd-MM-yyyy HH:mm:ss
+
+app:
+  jwt:
+    secret: "2141480867cca4ec6e40085895265f58e87452d577a6a1cab9a48adac5cac439"
+    expiration-ms: 86400000
