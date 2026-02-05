@@ -7,7 +7,7 @@ import java.util.List;
 import com.flashpage.app.domain.model.Venta.EstadoVenta;
 import com.flashpage.app.domain.model.Venta.MedioPago;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
@@ -59,6 +59,6 @@ public class VentaDTO {
             Long asesorId,
             Long clienteId,
             BigDecimal total,
-            @NotEmpty List<ItemResponse> items
+            @NotNull List<@Valid ItemResponse> items
     ) {}
 }

@@ -23,8 +23,6 @@ import jakarta.validation.Valid;
 public class PersonaController {
 
     private final PersonaService personaService;
-    private final PersonaRepository personaRepository;
-    private final AuthorizationService authorizationService;
 
     public PersonaController(
             PersonaService personaService,
@@ -32,11 +30,10 @@ public class PersonaController {
             AuthorizationService authorizationService
     ) {
         this.personaService = personaService;
-        this.personaRepository = personaRepository;
-        this.authorizationService = authorizationService;
     }
 
-    // CREATE (empleados/clientes). Si viene jefeId, lo asignamos.
+    // -------------------- METODOS CRUD -------------------- //
+    // ----------------------- CREATE ----------------------- //
     @PostMapping
     public ResponseEntity<PersonaDTO.Response> create(
             @AuthenticationPrincipal AppUserDetails principal,
@@ -72,7 +69,7 @@ public class PersonaController {
                 .body(PersonaMapper.toResponse(creada));
     }
 
-    // READ ALL
+    // ------------------------ READ ------------------------ //
     @GetMapping
     public ResponseEntity<List<PersonaDTO.Response>> readAll() {
         List<PersonaDTO.Response> list = personaService.readAll()
@@ -82,14 +79,14 @@ public class PersonaController {
         return ResponseEntity.ok(list);
     }
 
-    // READ BY ID
+    // ------------------------ READ ------------------------ //
     @GetMapping("/{id}")
     public ResponseEntity<PersonaDTO.Response> readById(@PathVariable Long id) {
         Persona p = personaService.readById(id);
         return ResponseEntity.ok(PersonaMapper.toResponse(p));
     }
 
-    // UPDATE (PATCH)
+    // ----------------------- UPDATE ----------------------- //
     @PatchMapping("/{id}")
     public ResponseEntity<PersonaDTO.Response> update(
             @AuthenticationPrincipal AppUserDetails principal,
@@ -116,7 +113,7 @@ public class PersonaController {
         return ResponseEntity.ok(PersonaMapper.toResponse(updated));
     }
 
-    // DELETE (si querés, mejor soft delete con activo=false; pero te dejo hard delete)
+    // ----------------------- DELETE ----------------------- //
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @AuthenticationPrincipal AppUserDetails principal,

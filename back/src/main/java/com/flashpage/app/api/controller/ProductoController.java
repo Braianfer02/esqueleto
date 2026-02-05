@@ -23,7 +23,8 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    // CREATE
+    // -------------------- METODOS CRUD -------------------- //
+    // ----------------------- CREATE ----------------------- //
     @PostMapping
     public ResponseEntity<ProductoDTO.Response> create(@Valid @RequestBody ProductoDTO.Create req) {
         Producto producto = ProductoMapper.toEntity(req);
@@ -34,7 +35,7 @@ public class ProductoController {
                 .body(ProductoMapper.toResponse(creado));
     }
 
-    // READ ALL
+    // ------------------------ READ ------------------------ //
     @GetMapping
     public ResponseEntity<List<ProductoDTO.Response>> readAll() {
         List<ProductoDTO.Response> list = productoService.readAll()
@@ -45,16 +46,16 @@ public class ProductoController {
         return ResponseEntity.ok(list);
     }
 
-    // READ BY ID
+    // ------------------------ READ ------------------------ //
     @GetMapping("/{id}")
     public ResponseEntity<ProductoDTO.Response> readById(@PathVariable Long id) {
         Producto p = productoService.readById(id);
         return ResponseEntity.ok(ProductoMapper.toResponse(p));
     }
 
-    // UPDATE (PATCH)
+    // ----------------------- UPDATE ----------------------- //
     @PatchMapping("/{id}")
-    public ResponseEntity<ProductoDTO.Response> update(@PathVariable Long id, @RequestBody ProductoDTO.Update req) {
+    public ResponseEntity<ProductoDTO.Response> update(@PathVariable Long id, @Valid @RequestBody ProductoDTO.Update req) {
         // tu service update hoy recibe Producto, así que armamos uno “parcial”
         Producto patch = new Producto();
         patch.setProducto(req.producto());
@@ -65,7 +66,7 @@ public class ProductoController {
         return ResponseEntity.ok(ProductoMapper.toResponse(actualizado));
     }
 
-    // DELETE (si querés, pero en productos suele ser soft delete también)
+    // ----------------------- DELETE ----------------------- //
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         productoService.deleteById(id);
